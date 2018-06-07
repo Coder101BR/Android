@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Kana Test</string>
+    <string name="btn_hiragana">HIRAGANA</string>
+    <string name="btn_katakana">KATAKANA</string>
+    <string name="btn_tabelas">TABELAS</string>
+    <string name="btn_sobre">SOBRE</string>
+</resources>
