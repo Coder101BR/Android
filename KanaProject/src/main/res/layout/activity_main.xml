@@ -16,6 +16,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="96dp"
         android:text="@string/btn_hiragana"
+        android:onClick="startHiragana"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
