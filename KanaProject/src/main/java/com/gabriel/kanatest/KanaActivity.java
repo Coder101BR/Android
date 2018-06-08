@@ -18,7 +18,6 @@ public class KanaActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView);
 
-
         if(message.equals("Hiragana"))
         {
             textView.setText("Hiragana");
