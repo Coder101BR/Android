@@ -18,7 +18,9 @@ public class KanaActivity extends AppCompatActivity {
     Random rand = new Random();
     Handler handler = new Handler();
     long delay = 5000; // tempo de delay em millisegundos
-
+    int RandomOption;
+    int Escolhido;
+    int Resposta;
 
     public static String[][] novoKanaArray(int Escolhido, String[][] KanaArray)
     {
@@ -38,8 +40,68 @@ public class KanaActivity extends AppCompatActivity {
     }
 
 
+    String[][] KanaArray = new String [][] {
+            { "a", "あ"},
+            { "i", "い"},
+            { "u", "う"},
+            { "e", "え"},
+            { "o", "お"},
+
+            { "ka", "か"},
+            { "ki", "き"},
+            { "ku", "く"},
+            { "ke", "け"},
+            { "ko", "こ"},
+
+            { "sa", "さ"},
+            { "shi", "し"},
+            { "su", "す"},
+            { "se", "せ"},
+            { "so", "そ"},
+
+            { "ta", "た"},
+            { "chi", "ち"},
+            { "tsu", "つ"},
+            { "te", "て"},
+            { "to", "と"},
+
+            { "na", "な"},
+            { "ni", "に"},
+            { "nu", "ぬ"},
+            { "ne", "ね"},
+            { "no", "の"},
+
+            { "ha", "は"},
+            { "hi", "ひ"},
+            { "fu", "ふ"},
+            { "he", "へ"},
+            { "ho", "ほ"},
+
+            { "ma", "ま"},
+            { "mi", "み"},
+            { "mu", "む"},
+            { "me", "め"},
+            { "mo", "も"},
+
+            { "ya", "や"},
+            { "yu", "ゆ"},
+            { "yo", "よ"},
+
+            { "ra", "ら"},
+            { "ri", "り"},
+            { "ru", "る"},
+            { "re", "れ"},
+            { "ro", "ろ"},
+
+            { "wa", "わ"},
+            { "wo", "を"},
+
+            { "n", "ん"}
+
+    };
 
 
+    String[][] NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,71 +173,103 @@ public class KanaActivity extends AppCompatActivity {
         OptionD = (RadioButton) findViewById(R.id.OptionD);
         textView = (TextView) findViewById(R.id.text);
 
-        textView.setText("か");
+       // textView.setText("か");
+
+
+        if(RandomOption == 0)
+        {
+            Resposta = rand.nextInt(KanaArray.length);  // Resposta
+            Escolhido = Resposta;
+            OptionA.setText(KanaArray[Escolhido][0]);
+
+            /* Print a random hiragana question */
+            textView.setText(KanaArray[Escolhido][1]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+            OptionB.setText(NovoKanaArray[Escolhido][0]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
+            OptionC.setText(NovoKanaArray[Escolhido][0]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+            OptionD.setText(NovoKanaArray[Escolhido][0]);
+        }
+        else if(RandomOption == 1)
+        {
+            Resposta = rand.nextInt(KanaArray.length);  // Resposta
+            Escolhido = Resposta;
+            OptionB.setText(KanaArray[Escolhido][0]);
+
+            /* Print a random hiragana question */
+            textView.setText(KanaArray[Escolhido][1]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+            OptionA.setText(NovoKanaArray[Escolhido][0]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
+            OptionC.setText(NovoKanaArray[Escolhido][0]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+            OptionD.setText(NovoKanaArray[Escolhido][0]);
+        }
+        else if(RandomOption == 2)
+        {
+            Resposta = rand.nextInt(KanaArray.length);  // Resposta
+            Escolhido = Resposta;
+            OptionC.setText(KanaArray[Escolhido][0]);
+
+            /* Print a random hiragana question */
+            textView.setText(KanaArray[Escolhido][1]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+            OptionB.setText(NovoKanaArray[Escolhido][0]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
+            OptionA.setText(NovoKanaArray[Escolhido][0]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+            OptionD.setText(NovoKanaArray[Escolhido][0]);
+        }
+        else if(RandomOption == 3)
+        {
+            Resposta = rand.nextInt(KanaArray.length);  // Resposta
+            Escolhido = Resposta;
+            OptionD.setText(KanaArray[Escolhido][0]);
+
+            /* Print a random hiragana question */
+            textView.setText(KanaArray[Escolhido][1]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+            OptionB.setText(NovoKanaArray[Escolhido][0]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
+            OptionC.setText(NovoKanaArray[Escolhido][0]);
+
+            NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+            Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+            OptionA.setText(NovoKanaArray[Escolhido][0]);
+        }
+
+
+
+
+
     }
 
 
 
 
-    String[][] KanaArray = new String [][] {
-            { "a", "あ"},
-            { "i", "い"},
-            { "u", "う"},
-            { "e", "え"},
-            { "o", "お"},
-
-            { "ka", "か"},
-            { "ki", "き"},
-            { "ku", "く"},
-            { "ke", "け"},
-            { "ko", "こ"},
-
-            { "sa", "さ"},
-            { "shi", "し"},
-            { "su", "す"},
-            { "se", "せ"},
-            { "so", "そ"},
-
-            { "ta", "た"},
-            { "chi", "ち"},
-            { "tsu", "つ"},
-            { "te", "て"},
-            { "to", "と"},
-
-            { "na", "な"},
-            { "ni", "に"},
-            { "nu", "ぬ"},
-            { "ne", "ね"},
-            { "no", "の"},
-
-            { "ha", "は"},
-            { "hi", "ひ"},
-            { "fu", "ふ"},
-            { "he", "へ"},
-            { "ho", "ほ"},
-
-            { "ma", "ま"},
-            { "mi", "み"},
-            { "mu", "む"},
-            { "me", "め"},
-            { "mo", "も"},
-
-            { "ya", "や"},
-            { "yu", "ゆ"},
-            { "yo", "よ"},
-
-            { "ra", "ら"},
-            { "ri", "り"},
-            { "ru", "る"},
-            { "re", "れ"},
-            { "ro", "ろ"},
-
-            { "wa", "わ"},
-            { "wo", "を"},
-
-            { "n", "ん"}
-
-    };
 
 
 
