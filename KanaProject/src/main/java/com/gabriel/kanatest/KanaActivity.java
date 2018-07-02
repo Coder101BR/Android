@@ -48,58 +48,60 @@ public class KanaActivity extends AppCompatActivity {
             { "i", "い"},
             { "u", "う"},
             { "e", "え"},
-            /*         { "o", "お"},
+            { "o", "お"}
 
-                     { "ka", "か"},
-                     { "ki", "き"},
-                     { "ku", "く"},
-                     { "ke", "け"},
-                     { "ko", "こ"},
+            /*                  { "o", "お"},
 
-                     { "sa", "さ"},
-                     { "shi", "し"},
-                     { "su", "す"},
-                     { "se", "せ"},
-                     { "so", "そ"},
+                               { "ka", "か"},
+                               { "ki", "き"},
+                               { "ku", "く"},
+                               { "ke", "け"},
+                               { "ko", "こ"},
 
-                     { "ta", "た"},
-                     { "chi", "ち"},
-                     { "tsu", "つ"},
-                     { "te", "て"},
-                     { "to", "と"},
+                               { "sa", "さ"},
+                               { "shi", "し"},
+                               { "su", "す"},
+                               { "se", "せ"},
+                               { "so", "そ"},
 
-                     { "na", "な"},
-                     { "ni", "に"},
-                     { "nu", "ぬ"},
-                     { "ne", "ね"},
-                     { "no", "の"},
+                               { "ta", "た"},
+                               { "chi", "ち"},
+                               { "tsu", "つ"},
+                               { "te", "て"},
+                               { "to", "と"},
 
-                     { "ha", "は"},
-                     { "hi", "ひ"},
-                     { "fu", "ふ"},
-                     { "he", "へ"},
-                     { "ho", "ほ"},
+                               { "na", "な"},
+                               { "ni", "に"},
+                               { "nu", "ぬ"},
+                               { "ne", "ね"},
+                               { "no", "の"},
 
-                     { "ma", "ま"},
-                     { "mi", "み"},
-                     { "mu", "む"},
-                     { "me", "め"},
-                     { "mo", "も"},
+                               { "ha", "は"},
+                               { "hi", "ひ"},
+                               { "fu", "ふ"},
+                               { "he", "へ"},
+                               { "ho", "ほ"},
 
-                     { "ya", "や"},
-                     { "yu", "ゆ"},
-                     { "yo", "よ"},
+                               { "ma", "ま"},
+                               { "mi", "み"},
+                               { "mu", "む"},
+                               { "me", "め"},
+                               { "mo", "も"},
 
-                     { "ra", "ら"},
-                     { "ri", "り"},
-                     { "ru", "る"},
-                     { "re", "れ"},
-                     { "ro", "ろ"},
+                               { "ya", "や"},
+                               { "yu", "ゆ"},
+                               { "yo", "よ"},
 
-                     { "wa", "わ"},
-                     { "wo", "を"},
-                  */
-            { "n", "ん"}
+                               { "ra", "ら"},
+                               { "ri", "り"},
+                               { "ru", "る"},
+                               { "re", "れ"},
+                               { "ro", "ろ"},
+
+                               { "wa", "わ"},
+                               { "wo", "を"},
+
+                               { "n", "ん"} */
 
     };
 
@@ -120,6 +122,18 @@ public class KanaActivity extends AppCompatActivity {
 
         return NovaResposta;
     }
+
+    void NovaIntent(int Contador, int limite)
+    {
+        if(Contador >= limite)
+        {
+            HabilitaNovoKana = false;
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
 
     int[] KanaJaUtilizado = new int[KanaArray.length];
 
@@ -172,7 +186,8 @@ public class KanaActivity extends AppCompatActivity {
                 // find which radio button is selected
 
 
-
+                // NovaIntent(Cont, 5);
+                NovaIntent(Cont, KanaJaUtilizado.length);
                 if(HabilitaNovoKana == true)
                 {
 
@@ -312,15 +327,19 @@ public class KanaActivity extends AppCompatActivity {
                                 OptionA.setText(NovoKanaArray[Escolhido][0]);
                             }
 
+                           // NovaIntent(Cont, 4);
                             HabilitaNovoKana = true;
+
                         }
                     }, delay);
                 }
 
-                if(Cont >= KanaArray.length)
-                {
-                    Toast.makeText(getApplicationContext(), "BUGADO", Toast.LENGTH_SHORT).show();
-                }
+
+
+
+
+
+
 
 
             }
