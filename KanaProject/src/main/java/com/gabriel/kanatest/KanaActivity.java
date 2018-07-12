@@ -11,6 +11,8 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class KanaActivity extends AppCompatActivity {
+    public static final String KANA_OK_RESULT = "qwer";
+    public static final String KANA_NOK_RESULT = "asdf";
 
     private RadioGroup radioGroup;
     private RadioButton OptionA, OptionB, OptionC, OptionD;
@@ -22,6 +24,8 @@ public class KanaActivity extends AppCompatActivity {
     int Escolhido;
     int Resposta;
     int Cont =0;
+    int Erros;
+    int Acertos;
     boolean HabilitaNovoKana = true;
 
     public static String[][] novoKanaArray(int Escolhido, String[][] KanaArray)
@@ -108,7 +112,7 @@ public class KanaActivity extends AppCompatActivity {
     int IndexRespostaUnica(int KanaListaUtilizados[])
     {
 
-        Toast.makeText(getApplicationContext(), Integer.toString(Cont), Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(), Integer.toString(Cont), Toast.LENGTH_SHORT).show();
         int NovaResposta = rand.nextInt(KanaArray.length);
         int i;
         for(i = 0; i < KanaListaUtilizados.length; i++)
@@ -128,8 +132,16 @@ public class KanaActivity extends AppCompatActivity {
         if(Contador >= limite)
         {
             HabilitaNovoKana = false;
+
             /* Call next activity */
             Intent intent = new Intent(this, ResultActivity.class);
+
+            intent.putExtra(KANA_OK_RESULT, Integer.toString(Acertos));
+            intent.putExtra(KANA_NOK_RESULT, Integer.toString(Erros));
+
+           // intent.putExtra(KANA_OK_RESULT, Acertos);
+           // intent.putExtra(KANA_NOK_RESULT, Erros);
+
             startActivity(intent);
             /* Finish this activity */
             finish();
@@ -199,6 +211,11 @@ public class KanaActivity extends AppCompatActivity {
                         if(OptionA.getText() == KanaArray[Resposta][0])
                         {
                             Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_SHORT).show();
+                            Acertos = Acertos+ 1;
+                        }
+                        else
+                        {
+                            Erros = Erros + 1;
                         }
                     }
                     else if(checkedId == R.id.OptionB)
@@ -206,6 +223,11 @@ public class KanaActivity extends AppCompatActivity {
                         if(OptionB.getText() == KanaArray[Resposta][0])
                         {
                             Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_SHORT).show();
+                            Acertos = Acertos+ 1;
+                        }
+                        else
+                        {
+                            Erros = Erros + 1;
                         }
                     }
                     else if(checkedId == R.id.OptionC)
@@ -213,6 +235,11 @@ public class KanaActivity extends AppCompatActivity {
                         if(OptionC.getText() == KanaArray[Resposta][0])
                         {
                             Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_SHORT).show();
+                            Acertos = Acertos+ 1;
+                        }
+                        else
+                        {
+                            Erros = Erros + 1;
                         }
                     }
                     else if(checkedId == R.id.OptionD)
@@ -220,6 +247,11 @@ public class KanaActivity extends AppCompatActivity {
                         if(OptionD.getText() == KanaArray[Resposta][0])
                         {
                             Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_SHORT).show();
+                            Acertos = Acertos+ 1;
+                        }
+                        else
+                        {
+                            Erros = Erros + 1;
                         }
                     }
 
@@ -238,6 +270,7 @@ public class KanaActivity extends AppCompatActivity {
                                 //Resposta = rand.nextInt(KanaArray.length);  // Resposta
                                 //Escolhido = Resposta;
                                 Escolhido = IndexRespostaUnica(KanaJaUtilizado);
+                                Resposta = Escolhido;
                                 KanaJaUtilizado[Cont] = Escolhido;
                                 Cont++;
                                 OptionA.setText(KanaArray[Escolhido][0]);
@@ -262,6 +295,7 @@ public class KanaActivity extends AppCompatActivity {
                                 //Resposta = rand.nextInt(KanaArray.length);  // Resposta
                                 //Escolhido = Resposta;
                                 Escolhido = IndexRespostaUnica(KanaJaUtilizado);
+                                Resposta = Escolhido;
                                 KanaJaUtilizado[Cont] = Escolhido;
                                 Cont++;
                                 OptionB.setText(KanaArray[Escolhido][0]);
@@ -286,6 +320,7 @@ public class KanaActivity extends AppCompatActivity {
                                 //Resposta = rand.nextInt(KanaArray.length);  // Resposta
                                 //Escolhido = Resposta;
                                 Escolhido = IndexRespostaUnica(KanaJaUtilizado);
+                                Resposta = Escolhido;
                                 KanaJaUtilizado[Cont] = Escolhido;
                                 Cont++;
                                 OptionC.setText(KanaArray[Escolhido][0]);
@@ -310,6 +345,7 @@ public class KanaActivity extends AppCompatActivity {
                                 //Resposta = rand.nextInt(KanaArray.length);  // Resposta
                                 //Escolhido = Resposta;
                                 Escolhido = IndexRespostaUnica(KanaJaUtilizado);
+                                Resposta = Escolhido;
                                 KanaJaUtilizado[Cont] = Escolhido;
                                 Cont++;
                                 OptionD.setText(KanaArray[Escolhido][0]);
