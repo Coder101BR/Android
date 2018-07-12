@@ -27,6 +27,7 @@ public class KanaActivity extends AppCompatActivity {
     int Erros;
     int Acertos;
     boolean HabilitaNovoKana = true;
+    boolean MutexNovasRespostas = true;
 
     public static String[][] novoKanaArray(int Escolhido, String[][] KanaArray)
     {
@@ -132,15 +133,13 @@ public class KanaActivity extends AppCompatActivity {
         if(Contador >= limite)
         {
             HabilitaNovoKana = false;
+            MutexNovasRespostas = false;
 
             /* Call next activity */
             Intent intent = new Intent(this, ResultActivity.class);
 
             intent.putExtra(KANA_OK_RESULT, Integer.toString(Acertos));
             intent.putExtra(KANA_NOK_RESULT, Integer.toString(Erros));
-
-           // intent.putExtra(KANA_OK_RESULT, Acertos);
-           // intent.putExtra(KANA_NOK_RESULT, Erros);
 
             startActivity(intent);
             /* Finish this activity */
@@ -202,9 +201,11 @@ public class KanaActivity extends AppCompatActivity {
 
 
                 // NovaIntent(Cont, 5);
-                NovaIntent(Cont, KanaJaUtilizado.length);
+                //NovaIntent(Cont, KanaJaUtilizado.length);
+
                 if(HabilitaNovoKana == true)
                 {
+
 
                     if(checkedId == R.id.OptionA)
                     {
@@ -258,119 +259,116 @@ public class KanaActivity extends AppCompatActivity {
 
 
                     // Inserir uma trava estilo mutex
+                    NovaIntent(Cont, KanaJaUtilizado.length);
+
                     HabilitaNovoKana = false;
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            // código a ser executado após o tempo de delay
-                            radioGroup.clearCheck(); // // Radio button checked
+                    if(MutexNovasRespostas ==  true) {
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                // código a ser executado após o tempo de delay
+                                radioGroup.clearCheck(); // // Radio button checked
 
-                            RandomOption = rand.nextInt(4);
-                            if(RandomOption == 0)
-                            {
-                                //Resposta = rand.nextInt(KanaArray.length);  // Resposta
-                                //Escolhido = Resposta;
-                                Escolhido = IndexRespostaUnica(KanaJaUtilizado);
-                                Resposta = Escolhido;
-                                KanaJaUtilizado[Cont] = Escolhido;
-                                Cont++;
-                                OptionA.setText(KanaArray[Escolhido][0]);
+                                RandomOption = rand.nextInt(4);
+                                if (RandomOption == 0) {
+                                    //Resposta = rand.nextInt(KanaArray.length);  // Resposta
+                                    //Escolhido = Resposta;
+                                    Escolhido = IndexRespostaUnica(KanaJaUtilizado);
+                                    Resposta = Escolhido;
+                                    KanaJaUtilizado[Cont] = Escolhido;
+                                    Cont++;
+                                    OptionA.setText(KanaArray[Escolhido][0]);
 
-                                /* Print a random hiragana question */
-                                finalTextView.setText(KanaArray[Escolhido][1]);
+                                    /* Print a random hiragana question */
+                                    finalTextView.setText(KanaArray[Escolhido][1]);
 
-                                NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
-                                OptionB.setText(NovoKanaArray[Escolhido][0]);
+                                    NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+                                    OptionB.setText(NovoKanaArray[Escolhido][0]);
 
-                                NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
-                                OptionC.setText(NovoKanaArray[Escolhido][0]);
+                                    NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
+                                    OptionC.setText(NovoKanaArray[Escolhido][0]);
 
-                                NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
-                                OptionD.setText(NovoKanaArray[Escolhido][0]);
+                                    NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+                                    OptionD.setText(NovoKanaArray[Escolhido][0]);
+                                } else if (RandomOption == 1) {
+                                    //Resposta = rand.nextInt(KanaArray.length);  // Resposta
+                                    //Escolhido = Resposta;
+                                    Escolhido = IndexRespostaUnica(KanaJaUtilizado);
+                                    Resposta = Escolhido;
+                                    KanaJaUtilizado[Cont] = Escolhido;
+                                    Cont++;
+                                    OptionB.setText(KanaArray[Escolhido][0]);
+
+                                    /* Print a random hiragana question */
+                                    finalTextView.setText(KanaArray[Escolhido][1]);
+
+                                    NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+                                    OptionA.setText(NovoKanaArray[Escolhido][0]);
+
+                                    NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
+                                    OptionC.setText(NovoKanaArray[Escolhido][0]);
+
+                                    NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+                                    OptionD.setText(NovoKanaArray[Escolhido][0]);
+                                } else if (RandomOption == 2) {
+                                    //Resposta = rand.nextInt(KanaArray.length);  // Resposta
+                                    //Escolhido = Resposta;
+                                    Escolhido = IndexRespostaUnica(KanaJaUtilizado);
+                                    Resposta = Escolhido;
+                                    KanaJaUtilizado[Cont] = Escolhido;
+                                    Cont++;
+                                    OptionC.setText(KanaArray[Escolhido][0]);
+
+                                    /* Print a random hiragana question */
+                                    finalTextView.setText(KanaArray[Escolhido][1]);
+
+                                    NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+                                    OptionB.setText(NovoKanaArray[Escolhido][0]);
+
+                                    NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
+                                    OptionA.setText(NovoKanaArray[Escolhido][0]);
+
+                                    NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+                                    OptionD.setText(NovoKanaArray[Escolhido][0]);
+                                } else if (RandomOption == 3) {
+                                    //Resposta = rand.nextInt(KanaArray.length);  // Resposta
+                                    //Escolhido = Resposta;
+                                    Escolhido = IndexRespostaUnica(KanaJaUtilizado);
+                                    Resposta = Escolhido;
+                                    KanaJaUtilizado[Cont] = Escolhido;
+                                    Cont++;
+                                    OptionD.setText(KanaArray[Escolhido][0]);
+
+                                    /* Print a random hiragana question */
+                                    finalTextView.setText(KanaArray[Escolhido][1]);
+
+                                    NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+                                    OptionB.setText(NovoKanaArray[Escolhido][0]);
+
+                                    NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
+                                    OptionC.setText(NovoKanaArray[Escolhido][0]);
+
+                                    NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
+                                    Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
+                                    OptionA.setText(NovoKanaArray[Escolhido][0]);
+                                }
+
+
+                                HabilitaNovoKana = true;
+
                             }
-                            else if(RandomOption == 1)
-                            {
-                                //Resposta = rand.nextInt(KanaArray.length);  // Resposta
-                                //Escolhido = Resposta;
-                                Escolhido = IndexRespostaUnica(KanaJaUtilizado);
-                                Resposta = Escolhido;
-                                KanaJaUtilizado[Cont] = Escolhido;
-                                Cont++;
-                                OptionB.setText(KanaArray[Escolhido][0]);
-
-                                /* Print a random hiragana question */
-                                finalTextView.setText(KanaArray[Escolhido][1]);
-
-                                NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
-                                OptionA.setText(NovoKanaArray[Escolhido][0]);
-
-                                NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
-                                OptionC.setText(NovoKanaArray[Escolhido][0]);
-
-                                NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
-                                OptionD.setText(NovoKanaArray[Escolhido][0]);
-                            }
-                            else if(RandomOption == 2)
-                            {
-                                //Resposta = rand.nextInt(KanaArray.length);  // Resposta
-                                //Escolhido = Resposta;
-                                Escolhido = IndexRespostaUnica(KanaJaUtilizado);
-                                Resposta = Escolhido;
-                                KanaJaUtilizado[Cont] = Escolhido;
-                                Cont++;
-                                OptionC.setText(KanaArray[Escolhido][0]);
-
-                                /* Print a random hiragana question */
-                                finalTextView.setText(KanaArray[Escolhido][1]);
-
-                                NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
-                                OptionB.setText(NovoKanaArray[Escolhido][0]);
-
-                                NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
-                                OptionA.setText(NovoKanaArray[Escolhido][0]);
-
-                                NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
-                                OptionD.setText(NovoKanaArray[Escolhido][0]);
-                            }
-                            else if(RandomOption == 3)
-                            {
-                                //Resposta = rand.nextInt(KanaArray.length);  // Resposta
-                                //Escolhido = Resposta;
-                                Escolhido = IndexRespostaUnica(KanaJaUtilizado);
-                                Resposta = Escolhido;
-                                KanaJaUtilizado[Cont] = Escolhido;
-                                Cont++;
-                                OptionD.setText(KanaArray[Escolhido][0]);
-
-                                /* Print a random hiragana question */
-                                finalTextView.setText(KanaArray[Escolhido][1]);
-
-                                NovoKanaArray = novoKanaArray(Escolhido, KanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
-                                OptionB.setText(NovoKanaArray[Escolhido][0]);
-
-                                NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção2
-                                OptionC.setText(NovoKanaArray[Escolhido][0]);
-
-                                NovoKanaArray = novoKanaArray(Escolhido, NovoKanaArray);
-                                Escolhido = rand.nextInt(NovoKanaArray.length); // Opção1
-                                OptionA.setText(NovoKanaArray[Escolhido][0]);
-                            }
-
-                           // NovaIntent(Cont, 4);
-                            HabilitaNovoKana = true;
-
-                        }
-                    }, delay);
+                        }, delay);
+                    }
                 }
 
 
