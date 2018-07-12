@@ -128,8 +128,11 @@ public class KanaActivity extends AppCompatActivity {
         if(Contador >= limite)
         {
             HabilitaNovoKana = false;
-            Intent intent = new Intent(this, MainActivity.class);
+            /* Call next activity */
+            Intent intent = new Intent(this, ResultActivity.class);
             startActivity(intent);
+            /* Finish this activity */
+            finish();
         }
 
     }
