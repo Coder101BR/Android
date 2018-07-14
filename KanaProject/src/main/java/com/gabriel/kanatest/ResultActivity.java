@@ -22,8 +22,8 @@ public class ResultActivity extends AppCompatActivity {
 
         String text_OK = message_OK;
         String text_NOK = message_NOK;
-
-        textView.setText(text_OK+"\n"+text_NOK);
-
+       // float Porcentagem = (float)(Integer.parseInt(text_OK)/(Integer.parseInt(text_OK)+Integer.parseInt(text_NOK)));
+       // textView.setText("Acertos: "+text_OK+"\n"+"Erros: "+text_NOK+"\n"+Porcentagem+"% de Acerto");
+        textView.setText("Acertos: "+text_OK+"\n"+"Erros: "+text_NOK);
     }
 }
